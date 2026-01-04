@@ -1,172 +1,134 @@
-let currentViewDate = new Date(2025, 11, 1); // 預設從 2025 年 12 月開始
-
-function renderCalendar(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth(); // 0-11
-    
-    // 標題
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    document.getElementById('calendar-title').textContent = `${monthNames[month]} ${year}`;
-
-    const firstDayIndex = new Date(year, month, 1).getDay(); // 該月第一天是星期幾
-    const lastDay = new Date(year, month + 1, 0).getDate(); // 該月最後一天是幾號
-
-    const calendarBody = document.getElementById('calendar-body');
-    calendarBody.innerHTML = ""; // 清空舊內容
-
-    let dateCounter = 1;
-    for (let i = 0; i < 6; i++) { // 最多 6 週
-        let row = document.createElement("tr");
-        row.classList.add("day");
-
-        for (let j = 0; j < 7; j++) {//一周7天
-            let cell = document.createElement("td");
-            
-            if (i === 0 && j < firstDayIndex) { 
-                //i===0代表第一週,j的日期格子小於星期數(firstDayIndex)的話，保持空白
-                cell.textContent = "";
-            } else if (dateCounter > lastDay) {
-                // 底下有寫dateCounter++，日期會持續計算直到最後一天。超過最後一天的會斷開運算，出現空白格子
-                break;
-            } else {
-                // 底下有寫dateCounter++，生成的td會持續計算直到最後一天。
-                cell.textContent = dateCounter;
-                // 在td裡加上.background的class
-                cell.classList.add("background");
-                
-                // 綁定點擊事件
-                cell.addEventListener('click', function() {
-                    document.querySelectorAll('.background').forEach(d => d.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 同步到右側面板
-                    const selectedDateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(this.textContent).padStart(2, '0')}`;
-                    document.getElementById('selected-date').textContent = selectedDateStr;
-                });
-                
-                dateCounter++;
-            }
-            row.appendChild(cell);//在tr裡生成td(日)
-        }
-        calendarBody.appendChild(row);//在calendar-body裡生成tr的row(週)
-        if (dateCounter > lastDay) break;//如果數超過每月最後一天就斷開
-    }
-}
-
-// 切換月份監聽
-document.getElementById('prevMonth').addEventListener('click', () => {
-    currentViewDate.setMonth(currentViewDate.getMonth() - 1);
-    renderCalendar(currentViewDate);
-});
-
-document.getElementById('nextMonth').addEventListener('click', () => {
-    currentViewDate.setMonth(currentViewDate.getMonth() + 1);
-    renderCalendar(currentViewDate);
-});
-
-// 初始化
-renderCalendar(currentViewDate);
-
-
-
-
-
-
-//單價
+// --- 基礎設定 ---
+let currentViewDate = new Date(2025, 11, 1);
 const TICKET_DATA = {
-    adult:{ name: "大人", price: 2000 },
+    adult: { name: "大人", price: 2000 },
     kids: { name: "小・中学生", price: 1000 },
     littleKids: { name: "未就学児", price: 600 },
     old: { name: "シニア", price: 1500 }
 };
+let ticketCounts = { adult: 0, kids: 0, littleKids: 0, old: 0 };
 
-//初始化狀態
-let ticketCounts = {
-    adult: 0,
-    kids: 0,
-    littleKids: 0,
-    old: 0
+// --- 1. 日曆渲染 (包含安全檢查) ---
+function renderCalendar(date) {
+    const calendarBody = document.getElementById('calendar-body');
+    if (!calendarBody) return; // 如果找不到日曆容器就結束，避免報錯
+
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    document.getElementById('calendar-title').textContent = `${monthNames[month]} ${year}`;
+
+    const firstDayIndex = new Date(year, month, 1).getDay();
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    calendarBody.innerHTML = "";
+
+    let dateCounter = 1;
+    for (let i = 0; i < 6; i++) {
+        let row = document.createElement("tr");
+        row.classList.add("day");
+        for (let j = 0; j < 7; j++) {
+            let cell = document.createElement("td");
+            if (i === 0 && j < firstDayIndex) {
+                cell.textContent = "";
+            } else if (dateCounter > lastDay) {
+                break;
+            } else {
+                cell.textContent = dateCounter;
+                cell.classList.add("background");
+                cell.addEventListener('click', function() {
+                    document.querySelectorAll('.background').forEach(d => d.classList.remove('active'));
+                    this.classList.add('active');
+                    const selectedDateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(this.textContent).padStart(2, '0')}`;
+                    document.getElementById('selected-date').textContent = selectedDateStr;
+                });
+                dateCounter++;
+            }
+            row.appendChild(cell);
+        }
+        calendarBody.appendChild(row);
+        if (dateCounter > lastDay) break;
+    }
+}
+
+// --- 2. 安全綁定事件監聽器 ---
+const safeAddListener = (id, event, callback) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener(event, callback); // 確保元素存在才監聽
 };
 
+safeAddListener('prevMonth', 'click', () => { currentViewDate.setMonth(currentViewDate.getMonth() - 1); renderCalendar(currentViewDate); });
+safeAddListener('nextMonth', 'click', () => { currentViewDate.setMonth(currentViewDate.getMonth() + 1); renderCalendar(currentViewDate); });
 
+safeAddListener('AdultPlus', 'click', () => { ticketCounts.adult++; updateSummary(); });
+safeAddListener('AdultMinus', 'click', () => { if (ticketCounts.adult > 0) { ticketCounts.adult--; updateSummary(); } });
+safeAddListener('kidsPlus', 'click', () => { ticketCounts.kids++; updateSummary(); });
+safeAddListener('kidsMinus', 'click', () => { if (ticketCounts.kids > 0) { ticketCounts.kids--; updateSummary(); } });
+safeAddListener('littleKidsPlus', 'click', () => { ticketCounts.littleKids++; updateSummary(); });
+safeAddListener('littleKidsMinus', () => { if (ticketCounts.littleKids > 0) { ticketCounts.littleKids--; updateSummary(); } });
+safeAddListener('oldPlus', 'click', () => { ticketCounts.old++; updateSummary(); });
+safeAddListener('oldMinus', 'click', () => { if (ticketCounts.old > 0) { ticketCounts.old--; updateSummary(); } });
+
+// --- 3. 更新摘要 ---
 function updateSummary() {
     const summaryList = document.getElementById('ticket-summary-list');
     const totalPriceDisplay = document.getElementById('total');
-    
+    if (!summaryList || !totalPriceDisplay) return;
+
     let totalAmount = 0;
     let htmlContent = "";
 
-    // 遍歷所有票種
     for (const key in ticketCounts) {
         const count = ticketCounts[key];
-        const price = TICKET_DATA[key].price;
-        const name = TICKET_DATA[key].name;
-
+        const { price, name } = TICKET_DATA[key];
         if (count > 0) {
-            // 計算該票種總額並累加到總計
             totalAmount += count * price;
-            // 產生顯示在右側的 HTML (例如：大人 2枚)
             htmlContent += `<li>${name} ${count}枚</li>`;
         }
-        
-        // 更新左側列表旁邊的數字 (假設 class 為 .adult-count 等)
         const leftDisplay = document.querySelector(`.${key}-count`);
         if (leftDisplay) leftDisplay.textContent = count;
     }
-
-    // 更新右側列表：如果沒票就顯示提示
     summaryList.innerHTML = htmlContent || "<li>-</li>";
-    // 更新總金額
     totalPriceDisplay.textContent = totalAmount.toLocaleString();
 }
 
-
-document.getElementById('AdultPlus').addEventListener('click', () => {
-    ticketCounts.adult++;
-    updateSummary();
+// --- 4. 儲存資料 (GitHub 同步關鍵) ---
+const nextButtons = document.querySelectorAll('.nextBtn a');
+nextButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const bookingData = {
+            date: document.getElementById('selected-date').textContent,
+            counts: ticketCounts,
+            total: document.getElementById('total').textContent,
+            summaryHtml: document.getElementById('ticket-summary-list').innerHTML
+        };
+        localStorage.setItem('aquariumBooking', JSON.stringify(bookingData));
+    });
 });
 
-document.getElementById('AdultMinus').addEventListener('click', () => {
-    if (ticketCounts.adult > 0) {
-        ticketCounts.adult--;
-        updateSummary();
+// --- 5. 跨頁面同步載入 ---
+window.addEventListener('load', () => {
+    renderCalendar(currentViewDate); // 初始化日曆
+    
+    const savedData = localStorage.getItem('aquariumBooking');
+    if (!savedData) return;
+
+    const data = JSON.parse(savedData);
+    const isStep2 = document.querySelector('.MemberInfo');
+    const isStep3 = document.querySelector('.ticket-completion-page');
+
+    // 通用填入
+    const updateText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    updateText('selected-date', data.date);
+    updateText('total', data.total);
+    
+    const listBox = document.getElementById('ticket-summary-list');
+    if (listBox) listBox.innerHTML = data.summaryHtml;
+
+    // 第三頁專用
+    if (isStep3) {
+        const timeInfo = document.querySelector('.NumberOfTicket__timeInfo--time');
+        if (timeInfo) timeInfo.textContent = `${data.date} 入場`;
+        const finalTotal = document.querySelector('.total__pay--number');
+        if (finalTotal) finalTotal.textContent = data.total;
     }
 });
-
-
-document.getElementById('kidsPlus').addEventListener('click', () => {
-    ticketCounts.kids++;
-    updateSummary();
-});
-
-document.getElementById('kidsMinus').addEventListener('click', () => {
-    if (ticketCounts.kids > 0) {
-        ticketCounts.kids--;
-        updateSummary();
-    }
-});
-document.getElementById('littleKidsPlus').addEventListener('click', () => {
-    ticketCounts.littleKids++;
-    updateSummary();
-});
-
-document.getElementById('littleKidsMinus').addEventListener('click', () => {
-    if (ticketCounts.littleKids > 0) {
-        ticketCounts.littleKids--;
-        updateSummary();
-    }
-});
-document.getElementById('oldPlus').addEventListener('click', () => {
-    ticketCounts.old++;
-    updateSummary();
-});
-
-document.getElementById('oldMinus').addEventListener('click', () => {
-    if (ticketCounts.old > 0) {
-        ticketCounts.old--;
-        updateSummary();
-    }
-});
-
-
-
