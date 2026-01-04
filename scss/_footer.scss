@@ -1,0 +1,284 @@
+footer {
+  position: relative;
+  .footer__top {
+    position: relative;
+    background-image: url(../img/shui-zhongwo-yongku-yuno-tiaome.jpg);
+    background-size: cover;
+    padding: 70px 0px 50px;
+
+    .footer__topwave.pc {
+      display: none;
+    }
+
+    .footer__topwave {
+      position: absolute;
+      top: -1px;
+    }
+
+    .footer__back {
+      position: absolute;
+    }
+    .footer__back.left {
+      height: 65px;
+      width: auto;
+      left: 5%;
+      top: -40px;
+    }
+
+    .footer__back.right {
+      height: 83px;
+      width: auto;
+      right: 5%;
+      top: 0px;
+    }
+
+    .footer__navgroup {
+      color: $whitecolor;
+      margin: 86px 0px 0px $SPpadding;
+
+      div {
+        margin-bottom: 40px;
+
+        h5 {
+          font-size: $SPboild;
+          margin-bottom: 16px;
+        }
+
+        span {
+          font-size: $SPmiddle;
+          display: block;
+          margin-bottom: 16px;
+
+          a {
+            color: $whitecolor;
+          }
+        }
+      }
+    }
+
+    .footer__btngroup {
+      padding: 0px $SPpadding;
+
+      .footer__btngroup--item {
+        background-color: $whitecolor;
+        height: 106px;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        padding-top: 12px;
+
+        a {
+          @extend .jpborderbace-main;
+
+          div {
+            font-size: $SPsubtitle;
+            text-align: center;
+          }
+
+          i {
+            display: block;
+            font-size: 3.2rem;
+            margin: 12px auto 0px;
+          }
+        }
+      }
+    }
+
+    .footer__bottomwave {
+      position: absolute;
+      bottom: -1px;
+    }
+  }
+
+  .footer__bottom {
+    padding: 32px $SPpadding 20px;
+    .footer__bottom--logo {
+      height: 54px;
+      margin-bottom: 16px;
+    }
+
+    .footer__bottom--txt {
+      font-size: $SPmiddle;
+      text-align: center;
+
+      div {
+        margin-bottom: 8px;
+      }
+    }
+
+    .footer__bottom--line {
+      height: 1px;
+      width: auto;
+      background-color: $maincolor;
+      display: block;
+      margin-top: 40px;
+    }
+
+    .footer__bottom--links {
+      .footer__bottom--list {
+        display: flex;
+        margin-top: 28px;
+        font-family: $jpfont;
+        font-size: $SPmiddle;
+        color: $maincolor;
+        font-weight: 500;
+        flex-wrap: wrap;
+        gap: 16px 28px;
+        justify-content: center;
+      }
+
+      .footer__language {
+        color: $maincolor;
+        font-size: $SPboild;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .footer__sns {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        a {
+          color: $maincolor;
+          font-size: $SPboild;
+        }
+      }
+    }
+
+    small {
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+      font-size: $SPsmail;
+    }
+  }
+}
+
+@include pc-view {
+  footer {
+    .footer__top {
+      padding: 197px 0px 50px;
+
+      .footer__topwave.sp {
+        display: none;
+      }
+
+      .footer__topwave.pc {
+        display: block;
+      }
+
+      .footer__back.left {
+        height: 110px;
+        top: -50px;
+      }
+
+      .footer__back.right {
+        height: 194px;
+        top: -100px;
+      }
+
+      .footer__navgroup {
+        max-width: 1440px;
+        margin: 30px auto 0px;
+        padding: $SPpadding;
+        display: flex;
+        gap: 124px;
+
+        div {
+          margin-bottom: auto;
+
+          h5 {
+            font-size: $PCmiddle;
+            margin-bottom: 32px;
+          }
+
+          span {
+            font-size: $PCsmail;
+            margin-bottom: 20px;
+          }
+        }
+      }
+
+      .footer__btngroup {
+        max-width: 1440px;
+        margin: 0px auto;
+        padding: 0px $SPpadding;
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+
+        .footer__btngroup--item {
+          height: 142px;
+          margin-bottom: 100px;
+          padding-top: 24px;
+          width: 100%;
+
+          a {
+            div {
+              font-size: $PCsubtitle;
+              text-align: center;
+            }
+
+            i {
+              display: block;
+              font-size: 4rem;
+              margin: 12px auto 0px;
+            }
+          }
+        }
+      }
+    }
+
+    .footer__bottom {
+      padding-bottom: 25px;
+
+      .footer__bottom--info {
+        display: flex;
+        gap: 32px;
+        margin: 60px auto 58px;
+
+        .footer__bottom--logo {
+          height: 56px;
+        }
+
+        .footer__bottom--txt {
+          text-align: left;
+          font-size: $PCmiddle;
+        }
+
+        .spbr {
+          display: none;
+        }
+      }
+
+      .footer__bottom--links {
+        display: flex;
+        gap: 44px;
+        margin-top: 44px;
+
+        .footer__bottom--list {
+          margin-top: 0px;
+          font-size: $PCmiddle;
+          gap: 45px;
+        }
+
+        .footer__language {
+          font-size: $SPsubtitle;
+          text-align: center;
+          margin-top: 0px;
+        }
+
+        .footer__sns {
+          margin-top: 0px;
+
+          gap: 20px;
+        }
+      }
+
+      small {
+        margin-top: 50px;
+        font-size: $PCsmail;
+      }
+    }
+  }
+}

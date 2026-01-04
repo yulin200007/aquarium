@@ -1,0 +1,1283 @@
+@import "variables";
+@import "common";
+@import "header";
+@import "footer";
+@import "ticket";
+
+main {
+  padding-top: 100px;
+
+  .fixbox {
+    background-color: $maincolor;
+    border-radius: 30px 0 0 30px;
+    width: 70px;
+    height: 110px;
+    padding-top: 20px;
+    position: fixed;
+    right: 0;
+    top: 200px;
+    z-index: 300;
+
+    img {
+      height: 34px;
+      margin-bottom: 4px;
+    }
+
+    span {
+      @extend .jpborderbace-white;
+      font-size: $SPsmail;
+      text-align: center;
+      display: block;
+    }
+  }
+
+  .MV {
+    height: 516px;
+    position: relative;
+
+    h2 {
+      @extend .jpborderbace-white;
+      font-size: $SPsubtitle;
+      position: absolute;
+      z-index: 100;
+      text-shadow: 1px 1px 2px black;
+      top: 60px;
+      left: 50px;
+    }
+  }
+
+  .MV__infobox {
+    position: absolute;
+    z-index: 100;
+    background-color: rgba($color: $whitecolor, $alpha: 0.9);
+    border-radius: 20px;
+    padding: 16px;
+    right: 46px;
+    bottom: 68px;
+    @extend .jpborderbace-main;
+
+    .MV__infobox--topbox {
+      display: flex;
+    }
+
+    .MV__infobox--date {
+      font-size: 2.8rem;
+      display: flex;
+
+      align-items: center;
+
+      .month {
+        display: inline-block;
+        margin-bottom: 30px;
+      }
+
+      .date {
+        margin-top: 30px;
+      }
+
+      .separate {
+        height: 52px;
+        width: 2px;
+        background-color: $maincolor;
+        display: inline-block;
+        transform: rotate(30deg);
+      }
+    }
+
+    .MV__infobox--line {
+      width: 2px;
+      height: auto;
+      background-color: $maincolor;
+      margin: 0 8px;
+      display: block;
+    }
+
+    .MV__infobox--nowinfo {
+      .MV__infobox--nowinfo-timetitle {
+        font-size: $SPsmail;
+      }
+
+      .MV__infobox--nowinfo-timeinfo {
+        font-size: $SPboild;
+      }
+    }
+
+    .MV__infobox--nowinfo-people {
+      display: flex;
+      font-size: $SPsmail;
+    }
+
+    .MV__infobox--btn {
+      color: $whitecolor;
+      background: linear-gradient(to left, $maincolor, $subcolor);
+      border-radius: 10px;
+      height: 48px;
+      padding: 12px;
+      font-size: $SPmiddle;
+      margin-top: 8px;
+      text-align: center;
+    }
+  }
+
+  .MV__imgbox--front {
+    z-index: 100;
+    bottom: 0px;
+    position: absolute;
+    bottom: -1px;
+  }
+
+  .PCfr {
+    display: none;
+  }
+
+  .MV__imgbox {
+    height: 516px;
+    position: absolute;
+
+    left: $SPpadding;
+    right: $SPpadding;
+
+    .MV__imgbox--front {
+      position: absolute;
+    }
+
+    .MV__imgbox--main {
+      position: absolute;
+      height: 516px;
+      bottom: 0px;
+      object-fit: cover;
+      border-radius: 30px 30px 0 0;
+      width: 100%;
+    }
+  }
+
+  .bottomnav {
+    display: none;
+  }
+
+  .pickup {
+    padding-left: $SPpadding;
+
+    .pickup__info--wave {
+      height: 60px;
+    }
+
+    .pickup__info--turnbtns {
+      display: none;
+    }
+
+    .pickup__contects {
+      margin-top: 32px;
+      display: flex;
+      gap: 20px;
+
+      li {
+        a {
+          color: black;
+
+          .date {
+            font-size: $SPmiddle;
+            font-family: $enfont;
+          }
+
+          .category {
+            font-size: $SPsmail;
+            font-weight: 700;
+            border: 2px solid;
+            border-radius: 14px;
+            padding: 2px 20px;
+          }
+
+          .pickup__contects--title {
+            font-size: $SPmiddle;
+            font-family: $jpfont;
+            margin-top: 8px;
+          }
+
+          .pickup__contects--imgset {
+            position: relative;
+            margin-top: 12px;
+
+            span {
+              position: absolute;
+              color: $whitecolor;
+              z-index: 200;
+            }
+
+            .pickup__contects--go {
+              background-color: $maincolor;
+              width: 54px;
+              height: 54px;
+              border-radius: 50%;
+              font-size: 3.2rem;
+              text-align: center;
+              line-height: 54px;
+              right: -10px;
+              bottom: 24px;
+            }
+
+            .pickup__contects--txt {
+              bottom: 8px;
+              left: 16px;
+              font-size: $SPmiddle;
+              font-family: $jpfont;
+              width: 180px;
+            }
+
+            .pickup__contects--cover {
+              background: linear-gradient(
+                rgba(0, 0, 0, 0) 70%,
+                rgba(0, 0, 0, 0.9) 100%
+              );
+              position: absolute;
+              z-index: 100;
+              @include pic-base;
+            }
+
+            .pickup__contects--img {
+              @include pic-base;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .news {
+    margin-top: 38px;
+    padding: 0 $SPpadding 68px;
+
+    ul {
+      margin-top: 38px;
+
+      li {
+        margin-bottom: 16px;
+
+        &::after {
+          content: " ";
+          width: auto;
+          height: 1px;
+          background-color: $subcolor;
+          display: block;
+          margin-top: 16px;
+        }
+
+        a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: black;
+
+          .date {
+            font-family: $enfont;
+            font-size: $SPmiddle;
+            margin-right: 8px;
+          }
+
+          .category {
+            font-size: $SPsmail;
+            font-weight: 700;
+            padding: 4px 8px;
+            border: 2px solid;
+            border-radius: 14px;
+          }
+
+          h4 {
+            font-size: $SPmiddle;
+            font-family: $jpfont;
+            font-weight: 700;
+            margin-top: 16px;
+          }
+
+          .news__contects--next {
+            background-image: url(../img/fishnext-normal.svg);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 46px;
+            height: 28px;
+            margin-right: 12px;
+
+            &:hover {
+              background-image: url(../img/fishnext-hover.svg);
+              margin-right: 0px;
+            }
+          }
+        }
+      }
+    }
+
+    .news__btn {
+      color: $whitecolor;
+      padding: 10px 26px;
+      background: linear-gradient(to right, $maincolor, $subcolor);
+      border-radius: 32px;
+      font-size: $SPmiddle;
+      width: 250px;
+      margin: 26px auto;
+
+      a {
+        color: $whitecolor;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+          color: $maincolor;
+          background-color: $whitecolor;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          line-height: 42px;
+        }
+      }
+    }
+
+    .news__background {
+      display: none;
+    }
+  }
+
+  .howtoenjoy {
+    background: linear-gradient($maincolor-thin, $yellowcolor-thin);
+    position: relative;
+    padding: 136px 0 116px;
+
+    h3 {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .howtoenjoy__list {
+      ul {
+        .howtoenjoy__list--item {
+          position: relative;
+
+          span {
+            @extend .jpborderbace-main;
+            font-size: $PCsubtitle;
+            writing-mode: vertical-rl;
+            background-color: $whitecolor;
+            padding: 4px;
+            position: absolute;
+            left: 50%;
+            top: -16px;
+            transform: translateX(-250%);
+          }
+
+          img {
+            height: 362px;
+          }
+        }
+      }
+    }
+  }
+
+  .aquariumcreatures {
+    padding: 28px $SPpadding;
+    background-image: url(../img/backwave.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+
+    .aquariumcreatures__info--wave {
+      height: 60px;
+    }
+
+    .aquariumcreatures__circle-layout {
+      position: relative;
+      /* 關鍵：所有子元素將以此為基準點定位 */
+      width: 320px;
+      /* 根據設計稿，設定一個適合手機版的大小 */
+      height: 320px;
+      margin: 40px auto;
+
+      .aquariumcreatures__main-itemset {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        position: absolute;
+        top: 0px;
+        /* 根據視覺調整主圖位置 */
+        left: 50%;
+        transform: translateX(-60%);
+        position: absolute;
+        &::after {
+          content: " ";
+          display: block;
+          background-color: $maincolor;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          z-index: -100;
+          position: absolute;
+          top: 0px;
+        }
+
+        img {
+          &:hover {
+            opacity: 0.3;
+          }
+        }
+      }
+
+      .aquariumcreatures__item--txt {
+        color: $whitecolor;
+        font-size: 1.4rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: none;
+        z-index: 100;
+        pointer-events: none;
+
+        &.is-active {
+          display: block;
+        }
+      }
+    }
+
+    .aquariumcreatures__list {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* 讓 ul 本身置中，但不會影響子元素的定位計算 */
+      transform: translate(-50%, -50%);
+
+      .aquariumcreatures__item {
+        position: absolute;
+        /* 讓每個 li 可以獨立定位 *
+          /* 小圓圖的尺寸 */
+        background-color: $maincolor;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          &:hover {
+            opacity: 0.3;
+          }
+        }
+
+        &::after {
+          content: " ";
+          display: block;
+          background-color: $maincolor;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .aquariumcreatures__item.small1 {
+        width: 100px;
+        height: 100px;
+        left: -190px;
+        bottom: -165px;
+      }
+
+      .aquariumcreatures__item.small2 {
+        width: 70px;
+        height: 70px;
+        left: -90px;
+        bottom: -200px;
+      }
+
+      .aquariumcreatures__item.small3 {
+        width: 70px;
+        height: 70px;
+        left: -5px;
+        bottom: -185px;
+      }
+
+      .aquariumcreatures__item.small4 {
+        width: 70px;
+        height: 70px;
+        left: 70px;
+        bottom: -130px;
+      }
+
+      .aquariumcreatures__item.small5 {
+        width: 50px;
+        height: 50px;
+        left: 110px;
+        bottom: -50px;
+      }
+    }
+  }
+
+  .aquariumcreatures__pcbtn {
+    display: none;
+  }
+
+  a {
+    color: $whitecolor;
+    font-family: $jpfont;
+    line-height: 1.2;
+
+    .aquariumcreatures__info--btn {
+      width: 114px;
+      height: 114px;
+      border-radius: 50%;
+      background: linear-gradient(to right, $maincolor, $subcolor);
+      border: 10px solid $maincolor-thin;
+      text-align: center;
+      padding: 8px;
+      margin: auto 0 auto auto;
+
+      .nor {
+        font-size: $SPmiddle;
+      }
+
+      .big {
+        font-size: 2.8rem;
+      }
+
+      i {
+        font-size: 2.8rem;
+      }
+    }
+  }
+}
+
+.address {
+  .address__wave {
+    height: 40px;
+  }
+
+  .address__info {
+    text-align: center;
+    margin: 40px auto;
+    padding: 0px $SPpadding;
+
+    .ddress__smalltitle {
+      @extend .jpborderbace-main;
+      font-size: $SPmiddle;
+      margin-bottom: 8px;
+    }
+
+    .place {
+      margin-bottom: 40px;
+    }
+
+    .place span {
+      font-size: $SPsmail;
+    }
+
+    .tel span {
+      font-size: 3.2rem;
+    }
+  }
+
+  .address__map {
+    iframe {
+      height: 240px;
+    }
+  }
+
+  .address__btnlist {
+    margin-top: 48px;
+
+    a {
+      @extend .jpborderbace-white;
+
+      .address__btn {
+        background: linear-gradient(to right, $maincolor, $subcolor);
+        padding: 8px 26px;
+        width: 316px;
+        border-radius: 40px;
+        margin: 0 auto 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .address__btn--txt {
+          font-size: $SPmiddle;
+          line-height: 58px;
+        }
+
+        .address__btn--icon {
+          font-size: 2.8rem;
+          color: $maincolor;
+          background-color: $whitecolor;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.last {
+  padding: 54px $SPpadding;
+
+  ul {
+    li {
+      height: 200px;
+      width: 315px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      background-size: 100%;
+
+      h4 {
+        @extend .jpborderbace-main;
+        font-size: $SPsubtitle;
+        margin-left: 12px;
+      }
+
+      span {
+        font-size: 2rem;
+        color: $maincolor;
+        width: 40px;
+        height: 40px;
+        border: 2px solid $maincolor;
+        border-radius: 50%;
+        display: block;
+        text-align: center;
+        line-height: 40px;
+        transform: rotate(45deg);
+        margin: 125px 0px 0px auto;
+      }
+    }
+
+    .last__shisetsu {
+      background-image: url(../img/Subtract-1.png);
+    }
+
+    .last__event {
+      background-image: url(../img/Subtract-2.png);
+    }
+
+    .last__kenkyu {
+      background-image: url(../img/Subtract-3.png);
+    }
+  }
+}
+
+@include pc-view {
+  main {
+    padding-top: 150px;
+    .fixbox {
+      border-radius: 50px 0 0 50px;
+      width: 100px;
+      height: 156px;
+      padding-top: 30px;
+      top: 252px;
+
+      img {
+        height: 44px;
+        margin-bottom: 4px;
+      }
+
+      span {
+        font-size: $PCsmail;
+      }
+    }
+
+    .MV {
+      height: 740px;
+      max-width: 1440px;
+      margin: 0px auto;
+
+      h2 {
+        font-size: 5.4rem;
+        top: auto;
+        bottom: 150px;
+        left: 135px;
+      }
+    }
+
+    .MV__infobox {
+      padding: 22px;
+      right: 124px;
+      bottom: 76px;
+
+      .MV__infobox--date {
+        font-size: 4rem;
+
+        .month {
+          margin-bottom: 25px;
+        }
+
+        .date {
+          margin-top: 25px;
+        }
+
+        .separate {
+          height: 84px;
+        }
+      }
+
+      .MV__infobox--line {
+        margin: 0 16px;
+      }
+
+      .MV__infobox--nowinfo {
+        .MV__infobox--nowinfo-timetitle {
+          font-size: $PCsmail;
+        }
+
+        .MV__infobox--nowinfo-timeinfo {
+          font-size: $PCsubtitle;
+        }
+      }
+
+      .MV__infobox--nowinfo-people {
+        font-size: $PCsmail;
+      }
+
+      .MV__infobox--btn {
+        border-radius: 20px;
+        height: 76px;
+        padding: 24px;
+        font-size: $PCmiddle;
+        margin-top: 16px;
+      }
+    }
+
+    .MV__imgbox--front {
+      z-index: 100;
+      bottom: 0px;
+      position: absolute;
+      bottom: 20px;
+      left: 5%;
+      right: 5%;
+    }
+
+    .PCfr {
+      display: block;
+    }
+
+    .SPfr {
+      display: none;
+    }
+
+    .MV__imgbox {
+      height: 720px;
+
+      .MV__imgbox--main {
+        height: 720px;
+        overflow: hidden;
+        border-radius: 50px 50px 0 0;
+        bottom: 0px;
+      }
+    }
+
+    .bottomnav {
+      display: block;
+
+      ul {
+        display: flex;
+        justify-content: center;
+
+        li {
+          border-right: 1px solid $maincolor-thin;
+          width: 182px;
+          font-size: $SPmiddle;
+          font-family: $jpfont;
+          font-weight: 700;
+
+          text-align: center;
+          display: block;
+          cursor: pointer;
+          transition: $transition-speed;
+
+          span {
+            color: $maincolor;
+          }
+
+          .bottomnav__img.ticket {
+            background-image: url(../img/ion_ticket.svg);
+          }
+          .bottomnav__img.time {
+            background-image: url(../img/time.svg);
+          }
+          .bottomnav__img.map {
+            background-image: url(../img/mingmap-fill.svg);
+          }
+          .bottomnav__img.museum {
+            background-image: url(../img/museum.svg);
+          }
+          .bottomnav__img.info {
+            background-image: url(../img/ion_fish.svg);
+          }
+          .bottomnav__img.group {
+            background-image: url(../img/lets-icons_group-fill.svg);
+          }
+          .bottomnav__img.question {
+            background-image: url(../img/mingcute_question-fill.svg);
+          }
+
+          &:last-child {
+            border-right: none;
+          }
+
+          &:hover {
+            transform: scale(1.1);
+
+            span {
+              color: $subcolor;
+            }
+
+            .bottomnav__img.ticket {
+              background-image: url(../img/ion_ticket-hover.svg);
+            }
+
+            .bottomnav__img.time {
+              background-image: url(../img/mingcute_time-hover.svg);
+            }
+
+            .bottomnav__img.map {
+              background-image: url(../img/mingcute_map-hover.svg);
+            }
+
+            .bottomnav__img.museum {
+              background-image: url(../img/tdesign_museum-hover.svg);
+            }
+
+            .bottomnav__img.info {
+              background-image: url(../img/ion_fish-hover.svg);
+            }
+
+            .bottomnav__img.group {
+              background-image: url(../img/lets-icons_group-hover.svg);
+            }
+
+            .bottomnav__img.question {
+              background-image: url(../img/mingcute_question-hover.svg);
+            }
+          }
+
+          .bottomnav__img {
+            height: 48px;
+            width: 48px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0px auto 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .pickup {
+    max-width: 1440px;
+    margin: 0px auto;
+    padding: 60px $SPpadding 0px;
+    display: flex;
+    justify-content: space-between;
+
+    .pickup__info--wave {
+      height: 90px;
+      width: 90px;
+      margin-top: 24px;
+    }
+
+    .title,
+    .subtitle {
+      text-align: left;
+    }
+
+    .pickup__info--turnbtns {
+      display: flex;
+      gap: 54px;
+      margin-top: 118px;
+
+      .pickup__info--turnbtn-btn {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 2px solid $maincolor;
+        text-align: center;
+
+        i {
+          line-height: 52px;
+          font-size: 25px;
+          color: $maincolor;
+        }
+      }
+    }
+
+    .pickup__contects {
+      gap: 32px;
+
+      li {
+        a {
+          .date {
+            font-size: $PCmiddle;
+          }
+
+          .category {
+            font-size: $PCsmail;
+            margin-left: 12px;
+          }
+
+          .pickup__contects--title {
+            font-size: 2.8rem;
+            margin-top: 8px;
+          }
+
+          .pickup__contects--go {
+            width: 64px;
+            height: 64px;
+            font-size: 4rem;
+            line-height: 64px;
+            bottom: 32px;
+          }
+
+          .pickup__contects--txt {
+            bottom: 16px;
+            font-size: $PCsmail;
+            width: 216px;
+          }
+
+          .pickup__contects--imgset {
+            .pickup__contects--cover {
+              width: 296px;
+              height: 346px;
+            }
+
+            .pickup__contects--img {
+              width: 296px;
+              height: 346px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .news {
+    max-width: 1440px;
+    margin: 0px auto;
+    padding: 120px 13% 114px;
+
+    ul {
+      margin-top: 56px;
+
+      li {
+        margin-bottom: 34px;
+
+        &::after {
+          margin-top: 34px;
+        }
+
+        a {
+          .news__contects--top {
+            display: flex;
+            align-items: center;
+            gap: 66px;
+          }
+
+          .date {
+            font-size: $PCsmail;
+            margin-right: 0px;
+          }
+
+          .category {
+            font-size: $SPmiddle;
+            padding: 4px 24px;
+          }
+
+          h4 {
+            margin-top: 0px;
+            font-size: $PCsmail;
+          }
+        }
+      }
+    }
+
+    .news__btn {
+      padding: 10px 22px;
+      font-size: $PCmiddle;
+      width: 304px;
+      margin: 60px auto;
+    }
+
+    .news__background {
+      display: none;
+    }
+  }
+
+  .howtoenjoy {
+    padding: 136px 0 76px;
+
+    h3 {
+      top: -24px;
+    }
+
+    .howtoenjoy__list {
+      ul {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+
+        .howtoenjoy__list--item {
+          span {
+            font-size: $PCsubtitle;
+            padding: 12px;
+            left: 50%;
+            transform: translateX(-170%);
+          }
+
+          img {
+            height: 362px;
+          }
+        }
+      }
+    }
+    .spbr {
+      display: none;
+    }
+  }
+
+  .aquariumcreatures {
+    display: flex;
+    padding: 76px $SPpadding 54px;
+    background-size: 100%;
+    background-position: bottom;
+    height: 765px;
+
+    .title,
+    .subtitle {
+      text-align: left;
+    }
+
+    .aquariumcreatures__info--wave {
+      height: 90px;
+      width: 90px;
+      margin-bottom: 52px;
+    }
+
+    .aquariumcreatures__circle-layout {
+      order: -1;
+
+      width: 850px;
+      /* 根據設計稿，設定一個適合手機版的大小 */
+      height: 684px;
+      margin: 40px auto;
+
+      .aquariumcreatures__main-itemset {
+        width: 420px;
+        height: 420px;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .aquariumcreatures__item--txt {
+        font-size: 2.4em;
+      }
+
+      .aquariumcreatures__list {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* 讓 ul 本身置中，但不會影響子元素的定位計算 */
+        transform: translate(-50%, -50%);
+
+        .aquariumcreatures__item {
+          position: absolute;
+          /* 讓每個 li 可以獨立定位 *
+                /* 小圓圖的尺寸 */
+          background-color: $maincolor;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+
+        .aquariumcreatures__item.small1 {
+          width: 264px;
+          height: 264px;
+          left: -470px;
+          bottom: -100px;
+        }
+
+        .aquariumcreatures__item.small2 {
+          width: 200px;
+          height: 200px;
+          left: -270px;
+          bottom: -250px;
+        }
+
+        .aquariumcreatures__item.small3 {
+          width: 190px;
+          height: 190px;
+          left: -50px;
+          bottom: -270px;
+        }
+
+        .aquariumcreatures__item.small4 {
+          width: 190px;
+          height: 190px;
+          left: 140px;
+          bottom: -190px;
+        }
+
+        .aquariumcreatures__item.small5 {
+          width: 135px;
+          height: 135px;
+          left: 270px;
+          bottom: -20px;
+        }
+      }
+    }
+
+    .aquariumcreatures__spbtn {
+      display: none;
+    }
+
+    .aquariumcreatures__pcbtn {
+      display: block;
+    }
+
+    a {
+      line-height: 1.2;
+
+      .aquariumcreatures__info--btn {
+        width: 185px;
+        height: 185px;
+        border: 12px solid $maincolor-thin;
+        padding: 32px;
+        margin: 136px auto 0px 0px;
+
+        .nor {
+          font-size: $PCmiddle;
+        }
+
+        .big {
+          font-size: 3.6rem;
+        }
+
+        i {
+          margin-top: 8px;
+          font-size: 3.2rem;
+        }
+      }
+    }
+  }
+
+  .address {
+    max-width: 1440px;
+    margin: 0px auto;
+    padding-left: $SPpadding;
+
+    .address__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+    }
+
+    .address__wave {
+      height: 90px;
+      width: 90px;
+    }
+
+    .title,
+    .subtitle {
+      text-align: left;
+    }
+
+    .address__info {
+      text-align: left;
+      margin: 0px;
+      padding: 0px;
+
+      .ddress__smalltitle {
+        font-size: $PCmiddle;
+      }
+
+      .place {
+        margin: 76px 0px 32px;
+      }
+
+      .place span {
+        font-size: $PCsmail;
+      }
+
+      .tel span {
+        font-size: 3.6rem;
+      }
+    }
+
+    .address__map {
+      iframe {
+        height: 435px;
+        width: 920px;
+        margin-left: 40px;
+        border-radius: 30px 0px 0px 30px;
+      }
+    }
+
+    .address__btnlist {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 60px;
+
+      a {
+        .address__btn {
+          padding: 16px 50px;
+          width: 100%;
+          margin: auto;
+          justify-content: space-between;
+          gap: 24px;
+
+          .address__btn--txt {
+            font-size: $SPsubtitle;
+            line-height: 58px;
+          }
+        }
+      }
+    }
+  }
+
+  .last {
+    max-width: 1440px;
+    margin: 0px auto;
+    padding: 120px $SPpadding;
+
+    ul {
+      display: flex;
+      gap: 32px;
+
+      li {
+        height: 455px;
+        width: 405px;
+        margin: auto;
+        background-repeat: no-repeat;
+        cursor: pointer;
+
+        h4 {
+          font-size: $PCsubtitle;
+          margin: 12px 0px auto 20px;
+        }
+
+        span {
+          font-size: 4rem;
+          width: 77px;
+          height: 77px;
+          border: 3px solid $maincolor;
+          line-height: 77px;
+          margin: 310px 0px 0px auto;
+        }
+      }
+
+      .last__shisetsu {
+        background-image: url(../img/Subtract-PC1.png);
+      }
+
+      .last__event {
+        background-image: url(../img/Subtract-PC2.png);
+      }
+
+      .last__kenkyu {
+        background-image: url(../img/Subtract-PC3.png);
+      }
+    }
+  }
+}

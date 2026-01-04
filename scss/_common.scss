@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+body{
+  position: relative;
+}
+
+.bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(1, 191, 254, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: rise 10s linear infinite;
+      z-index: 100;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+
+
+html {
+  font-family: "Josefin Sans", "Zen Kaku Gothic New", sans-serif;
+  font-size: 62.5%;
+
+}
+
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.jpborderbace-white {
+  color: $whitecolor;
+  font-family: $jpfont;
+  font-weight: 700;
+}
+
+.jpborderbace-main {
+  color: $maincolor;
+  font-family: $jpfont;
+  font-weight: 700;
+}
+
+.title {
+  font-family: $enfont;
+  font-size: $SPtitle;
+  background: linear-gradient(180deg, $subcolor 0%, $subcolor 30%, $maincolor 31%, $maincolor 100%);
+  background: -webkit-linear-gradient(-90deg, $subcolor 0%, $subcolor 30%, $maincolor 31%, $maincolor 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+
+.no-scroll{
+  overflow: hidden;
+}
+
+.subtitle {
+  font-size: $SPmiddle;
+  color: $maincolor;
+  text-align: center;
+}
+
+.languageset{
+    &.is-active{
+                    .select{
+                      display: block;
+                      
+                    }
+  }
+}
+
+ .select{
+            display: none;
+            padding: 8px 20px;
+              border: 2px solid $maincolor-thin;
+              background: $maincolor-thin;
+              transition: 0.4s;
+              border-radius: 28px;
+              margin: 4px 0px auto auto;
+
+              &:hover{
+                border: 2px solid $maincolor-thin;
+              }
+
+              &:focus{
+                border: 2px solid $maincolor-thin;
+              }
+          }
+
+@mixin icon-text-btn($icon-size: 34px, $text-size: $SPsmail + 0.6rem) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    @extend .jpborderbace-main;
+    font-size: $text-size;
+  }
+
+  img,
+  i {
+    height: $icon-size;
+    width: auto;
+  }
+}
+
+// 定義一個 Extend 模板給白色圓角按鈕
+%white-rounded-btn-base {
+  background-color: $whitecolor;
+  border-radius: 10px;
+}
+
+@mixin pc-view {
+  @media screen and (min-width: 769px) {
+    @content; // @content 允許你在引用時傳入樣式
+  }
+}
+
+// 放在你的 _mixins.scss 檔案中（或 _header.scss 的最上方）
+@mixin line-base {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: $maincolor;
+  transition: transform $transition-speed, opacity $transition-speed; // 使用變數
+}
+
+@mixin pic-base {
+  width: 248px;
+  height: 288px;
+  border-radius: 30px;
+}
+
+@include pc-view {
+
+  .title {
+      font-size: $PCtitle;
+    }
+
+    .subtitle {
+      font-size: $PCmiddle;
+    }
+}
+
+// 使用 @each 迴圈，自動生成 .category-event, .category-notice 等類別
+@each $category, $color in $category-colors {
+  .category-#{$category} {
+    // 設置文字顏色或邊框顏色
+    color: $color; 
+    border: 2px solid $color;
+    
+  }
+}

@@ -1,0 +1,37 @@
+
+    $jpfont:"Zen Kaku Gothic New", sans-serif;
+    $enfont:'Josefin Sans';
+    $chfont:'Noto Sans TC';
+
+    $SPtitle:4.8rem;
+    $SPsubtitle:2.4rem;
+    $SPboild:2rem;
+    $SPmiddle:1.6rem;
+    $SPsmail:1.4rem;
+
+    $PCtitle:6.4rem;
+    $PCsubtitle:3.2rem;
+    $PCmiddle:2rem;
+    $PCsmail:1.8rem;
+
+    $SPpadding:5%;
+
+
+    $transition-speed: 0.3s ease-in-out;
+
+
+    $maincolor:#0887A0;
+    $maincolor-thin:#D5E7F2;
+    $subcolor:#55B3D9;
+    $subcolor-thin:#C9E7F2;
+    $subcolor-heavy:#0468BF;
+    $importcolor:#F25F33;
+    $whitecolor:white;
+    $yellowcolor:#F7E22E;
+    $yellowcolor-thin:#FFF8C0;
+
+    $category-colors:(
+        "event":#0468BF,      // 活動 (importcolor)
+        "notice": #0887A0,     // 公告/通知 (maincolor)
+        "important": #F25F33,      // 指南/教學 (subcolor)
+    );

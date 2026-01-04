@@ -1,0 +1,424 @@
+header {
+   width: 100vw;
+    z-index: 300;
+    position: fixed;
+    background-color: $whitecolor;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+
+
+  h1 {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+  }
+
+  .topnav {
+    height: 78px;
+
+    .topnav__heater {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 5%;
+
+      .topnavi__logo {
+        height: 54px;
+        width: auto;
+      }
+      .topnav__navlist--top{
+        display: none
+      }
+
+      .topnav__navhanbergar {
+
+        cursor: pointer;
+
+        .topnav__line {
+          @include line-base; 
+          margin-top: 12px;
+
+          }
+
+&.is-active{
+
+.topnav__line:nth-child(1) {
+  transform: translateY(15px) rotate(45deg);
+}
+
+.topnav__line:nth-child(2) {
+  opacity: 0;
+}
+
+/* 3. 將第三條線移動到中心並旋轉 */
+.topnav__line:nth-child(3) {
+  transform: translateY(-15px) rotate(-45deg);
+}
+
+} 
+      }
+    }
+
+    .topnav__navlist {
+      position: absolute;
+      z-index: 500;
+      background: linear-gradient($maincolor, $subcolor);
+      height: 100vh;
+      padding: $SPpadding;
+      width: 100%;
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: 0.4s;
+      top: 78px;
+      left: 0;
+      
+      
+      .topnav__navlist--top {
+        display: flex;
+        justify-content: space-between;
+
+        .topnav__language {
+          color: $whitecolor;
+          font-size: $SPboild;
+
+        
+
+          .topnav__language--title {
+            display: flex;
+            margin-top: 16px;
+            cursor: pointer;
+          }
+       
+        }
+
+        .search-form {
+          padding: 5px 10px;
+          border-radius: 30px;
+          width: 180px;
+          max-width: 100%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          background: #fff;
+          font-size: 15px;
+
+          .search-input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 180px;
+            height: 44px;
+            color: $whitecolor;
+          }
+
+          .search-button {
+            border: none;
+            background: none;
+            outline: none;
+            color: $maincolor;
+            font-weight: 700;
+            font-family: "Font Awesome 5 Free";
+            font-size: 24px;
+
+            transition: color 0.3s ease 0s;
+            cursor: pointer;
+
+            &:hover {
+              color: $subcolor;
+            }
+          }
+        }
+      }
+
+      .topnav__navlist--ticket {
+        @extend %white-rounded-btn-base;
+        height: 62px;
+        margin-top: 24px;
+
+        @include icon-text-btn($icon-size: 34px, $text-size: $SPsmail + 0.6rem);
+      }
+      &:hover{
+        background-color: $yellowcolor;
+      }
+
+      .header__navgroup {
+        margin-top: 24px;
+
+        .header__navgroup--group {
+          margin-top: 32px;
+
+          h5 {
+            font-size: $SPsmail + 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            @extend .jpborderbace-white;
+            cursor: pointer;
+
+
+            &::after {
+              content: "⌄";
+              text-align: center;
+              color: $maincolor;
+              background-color: $whitecolor;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: inline-block;
+            }
+          }
+          
+
+          .header__navgroup--set {
+            display: none;
+            background-color: $whitecolor;
+            border-radius: 0 0 20px 20px;
+            padding: 20px 6%;
+            margin-top: 0px;
+
+          }
+
+
+          .header__navgroup--line {
+            height: 1px;
+            width: auto;
+            background-color: $whitecolor;
+            margin-top: 16px;
+
+          }
+
+          .set1.active ,
+          .set2.active,
+          .set3.active{
+            display: block;
+          }
+
+          .header__navgroup--set{
+
+            div {
+            font-size: $SPsmail + 0.2rem;
+            margin-bottom: 16px;
+
+            &::before {
+              content: "▸";
+              color: $maincolor;
+              font-size: 20px;
+              margin-right: 8px;
+            }
+
+            a {
+              color: $maincolor;
+            }
+          }
+
+          }
+
+          
+        }
+      }
+
+      .header__btngroup {
+        height: 108px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 28px;
+       
+        .header__btngroup--item {
+          @extend .jpborderbace-white;
+          font-size: $SPsmail + 0.2rem;
+          width: 100%;
+          border-radius: 10px;
+          text-align: center;
+          background-color: $whitecolor;
+          padding: 12px;
+
+          a {
+            color: $maincolor;
+            i {
+              display: block;
+              font-size: 3rem;
+              text-align: center;
+              margin: auto auto 0px;
+            }
+          }
+        }
+      }
+
+      .topnav__sns {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin-top: 28px;
+
+        a {
+          color: $whitecolor;
+          font-size: 2rem;
+        }
+      }
+    }
+
+    
+  }
+
+  .topnav__navlist.active{
+    transform: translateX(0);
+    opacity: 1;
+    }
+}
+
+@include pc-view {
+    header{
+      
+
+      
+      margin: 0px auto;
+      .topnav {
+      height: 120px;
+
+      .topnav__heater {
+        padding: 36px 5%;
+
+        .topnavi__logo {
+          height: 56px;
+        }
+
+        .topnav__navhanbergar {
+          display: none;
+        }
+
+        .topnav__navlist--top {
+        display: flex;
+        justify-content: space-between;
+
+        .topnav__language {
+          color: $maincolor;
+          font-size: $SPboild;
+          margin-left: 34px;
+
+          &.is-active{
+            .select{
+              display: block;
+            }
+
+          }
+
+          .select{
+            display: none;
+          }
+
+          .topnav__language--title {
+            display: flex;
+            margin-top: 12px;
+            cursor: pointer;
+
+            
+            
+
+            label{
+              margin-left: 4px;
+            }
+          }
+        }
+
+        .search-form {
+          width: 220px;
+          max-width: 100%;
+          font-size: 15px;
+          border: 2px solid $maincolor;
+          border-radius: 22px;
+
+          .search-input {
+            border: auto;
+            background: none;
+            outline: none;
+            width: 180px;
+            height: 44px;
+
+          }
+
+          .search-button {
+            border: none;
+            background: none;
+            outline: none;
+            color: $maincolor;
+            font-weight: 700;
+            font-family: "Font Awesome 5 Free";
+            font-size: 24px;
+
+            transition: color 0.3s ease 0s;
+            cursor: pointer;
+
+            &:hover {
+              color: $subcolor;
+            }
+          }
+        }
+      }
+
+      }
+    }
+    
+
+
+    
+  }
+
+ 
+
+}
+
+ .bottomnav--hide{
+    background-color: $maincolor;
+    display: none;
+    transition: $transition-speed;
+    transform: translateY(-50%);
+
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      
+      font-size: $SPmiddle;
+      font-weight: 700;
+      gap: 20px;
+      
+      
+      li{
+        cursor: pointer;
+        display: flex;       
+        align-items: center;
+        gap: 20px;
+          a{
+            color: $whitecolor;
+            
+
+            :hover{
+              color: $yellowcolor;
+              transform: $transition-speed;
+            }
+          }
+        &::after{
+          background-color: $whitecolor;
+          content:"";
+          width: 1px;
+          height: 36px;
+          display: inline-block;
+  
+        }
+
+        &:last-child::after {
+        display: none;
+      }
+      }
+    }
+  }
+
+  .bottomnav--hide.show{
+    display: block;
+    transform: translateY(0);
+  }
+

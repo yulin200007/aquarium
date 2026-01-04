@@ -1,0 +1,743 @@
+// 售票頁面
+
+main {
+  .buyPaneru.SPnone {
+    display: none;
+  }
+
+  .smalltitle{
+    font-size: $SPmiddle;
+    color: #A2A2A2;
+  }
+
+  h1 {
+    font-size: $SPsubtitle;
+    color: $maincolor;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: $jpfont;
+  }
+
+  // --- 1. 進度條 (stepBar) ---
+  .stepBar {
+    margin-bottom: 40px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: relative;
+
+      // 連接線
+      &::before {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background-color: #d9d9d9;
+      }
+
+      .stepBar__item {
+        position: relative;
+        text-align: center;
+        width: 108px;
+
+        .dot {
+          width: 20px;
+          height: 20px;
+          background-color: #d9d9d9;
+          border-radius: 50%;
+          margin: 0 auto 8px;
+          z-index: 1;
+        }
+
+        .dot.step {
+          background-color: $maincolor;
+        }
+
+        p {
+          font-size: $SPsmail;
+          color: #d9d9d9;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  // --- 2. 購票資訊面板 (buyPaneru - 側邊欄卡片) ---
+  .buyPaneru {
+    background-color: $whitecolor;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0px 0px 10px rgba(22, 120, 117, 0.2);
+
+    
+
+    h3 {
+      font-size: $SPsmail;
+      margin-top: 15px;
+    }
+
+    p {
+      font-size: $SPmiddle;
+
+    }
+
+    .buyPaneru__pay {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: end;
+      padding: 40px 10px 10px 10px;
+      background-color: $subcolor-thin;
+      border-radius: 10px;
+      margin-top: 20px;
+
+
+      div {
+        display: flex;
+        align-items: baseline;
+
+        p:first-child {
+          font-size: 3.2rem;
+          font-weight: 900;
+          margin-right: 4px;
+        }
+
+        p:last-child {
+          font-size: $SPsmail;
+        }
+      }
+    }
+
+    .buyPaneru__btn {
+      width: 100%;
+      background-color: #ff6b35; // 醒目的橘色
+      border-radius: 5px;
+      padding: 15px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      a {
+        color: $whitecolor;
+        font-size: $SPmiddle;
+        font-weight: 700;
+        display: block;
+      }
+    }
+  }
+
+  // --- 3. 日曆選擇 (UseDate) ---
+  .UseDate {
+    margin-bottom: 50px;
+
+    p {
+      font-size: $SPsmail;
+      margin-bottom: 20px;
+    }
+
+    .UseDate__calendar-container {
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 20px;
+
+      .UseDate__calendar-container--title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h3 {
+          font-family: $enfont;
+          font-size: $SPmiddle;
+        }
+
+        .calendar__btn {
+          background: none;
+          font-size: 2rem;
+          color: $maincolor;
+          cursor: pointer;
+        }
+      }
+
+      .calendar {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+
+        th {
+          font-family: $enfont;
+          font-size: $SPsmail;
+          padding-bottom: 15px;
+          color: #999;
+        }
+
+        th.red {
+          color: orangered;
+        }
+
+        th.blue {
+          color: $subcolor;
+        }
+
+        td {
+          padding: 10px 0;
+          font-size: $SPmiddle;
+          font-family: $enfont;
+          cursor: pointer;
+          border-radius: 50%;
+
+          &:hover {
+            background-color: $maincolor-thin;
+          }
+        }
+      }
+
+      .background.active {
+        background-color: $maincolor-thin;
+      }
+
+      .UseDate__bottom {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        font-size: $SPsmail;
+        color: #666;
+      }
+    }
+  }
+
+  // --- 4. 票數選擇 (NumberOfTicket) ---
+  .NumberOfTicket {
+    .NumberOfTicket__category {
+      h3 {
+        font-size: $SPmiddle;
+        flex: 1;
+      }
+
+      div:nth-child(2) {
+        display: flex;
+        align-items: baseline;
+        font-size: $SPsmail;
+      }
+
+      .NumberOfTicket__category--count {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border:solid 1px #D9D9D9;
+        border-radius: 17px;
+        padding: 2px;
+
+        button {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: $maincolor;
+          color: $whitecolor;
+          cursor: pointer;
+
+          &:hover{
+            opacity: 0.8;
+          }
+        }
+
+        p {
+          font-size: $SPmiddle;
+          font-weight: 700;
+          min-width: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+// 底部的確認按鈕
+.BuyTicketBtn {
+  display: block;
+  width: 250px;
+  background-color: #ff6b35;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 60px auto 0;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+
+  a {
+    color: $whitecolor;
+    font-size: $SPmiddle;
+    font-weight: 700;
+  }
+  &:hover{
+    opacity: 0.6;
+  }
+}
+
+main.grid {
+  max-width: 315px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: $SPsubtitle;
+    color: $maincolor;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-size: $SPsmail;
+    font-weight: 500;
+  }
+}
+
+// --- 6. 購入內容確認列表 (第二頁上方) ---
+.NumberOfTicket {
+  .NumberOfTicket__time {
+    background-color: $maincolor-thin;
+    color: $maincolor;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: $SPsmail;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+
+  .NumberOfTicket__category {
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid $subcolor-thin;
+
+      .NumberOfTicket__category--set {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        div {
+          display: flex;
+          align-items: baseline;
+          font-size: $SPsmail;
+        }
+      }
+
+      .NumberOfTicket__category--payCount {
+        font-size: $SPmiddle;
+        font-weight: 500;
+        font-family: $enfont;
+      }
+    }
+  }
+}
+
+// --- 7. 購入者情報表單 (MemberInfo) ---
+.MemberInfo {
+  margin-top: 50px;
+  @extend .jpborderbace-main;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  // 每一行的標籤樣式
+  label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+
+    h3 {
+      font-size: $SPsmail;
+      font-weight: 500;
+    }
+
+    p {
+      background-color: #ff6b35; // 必須標籤
+      color: $whitecolor;
+      font-size: 1rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  }
+
+  // 輸入框通用樣式
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: $SPsmail;
+    background-color: #fafafa;
+
+    &:focus {
+      outline: none;
+      border-color: $subcolor;
+      background-color: $whitecolor;
+    }
+  }
+
+  // 姓名與郵遞區號的並排樣式
+  .input {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    input {
+      flex: 1;
+    }
+  }
+
+  // 生年月日選擇器並排
+  .MemberInfo__birthday .select {
+    display: flex;
+    gap: 8px;
+
+    select {
+      flex: 1;
+      display: block;
+    }
+
+    // 覆寫 common.scss 中的 select { display: none }
+  }
+}
+
+// --- 8. 底部主要按鈕 ---
+.BuyLinkBtn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  background-color: #ff6b35;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 40px auto;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+
+  a {
+    color: $whitecolor;
+    font-size: $SPmiddle;
+    font-weight: 700;
+    display: block;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+// --- 9. 第二頁 PC 版排版調整 ---
+@include pc-view {
+  .MemberInfo {
+    & > div {
+      // 在 PC 版將欄位稍微收窄或改為兩欄式
+      max-width: 800px;
+    }
+
+    // 讓標籤與輸入框在 PC 版可以橫向排列 (可選)
+    .MemberInfo__name,
+    .MemberInfo__furikana,
+    .MemberInfo__mail,
+    .MemberInfo__mailConfirmation,
+    .MemberInfo__telphone,
+    .MemberInfo__gender,
+    .MemberInfo__birthday,
+    .MemberInfo__postCode,
+    .MemberInfo__prefectures {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+
+      label {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// --- お支払い (page 3) ---
+.ticket-completion-page {
+  max-width: 315px;
+  margin: 0 auto;
+
+  .stepBar {
+    ul {
+      &::before {
+        background-color: $maincolor;
+      }
+
+      li {
+        .dot {
+          background-color: $maincolor;
+        }
+      }
+
+      :last-child {
+        p {
+          color: $maincolor;
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: $SPsmail;
+    font-weight: 500;
+  }
+
+  //NumberOfTicket
+
+  .NumberOfTicket {
+    h2 {
+      font-size: $SPsubtitle;
+      color: $maincolor;
+      margin-bottom: 16px;
+    }
+
+    .NumberOfTicket__timeInfo {
+      background-color: $maincolor-thin;
+      padding: 8px 20px;
+      font-size: $SPsmail;
+    }
+
+    .NumberOfTicket__category {
+      li {
+        align-items: end;
+
+        h3 {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .total {
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      margin-top: 16px;
+
+      h4 {
+        font-size: $SPmiddle;
+      }
+
+      .total__pay {
+        display: flex;
+        align-items: end;
+        margin-left: 32px;
+
+        .total__pay--number {
+          font-size: 2.8rem;
+        }
+
+        .total__pay--en {
+          font-size: $SPsmail;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  // attention
+  .attention {
+    border-radius: 5px;
+    background-color: $maincolor-thin;
+    text-align: center;
+    padding: 24px 0;
+    margin-top: 44px;
+
+    h2 {
+      font-size: $SPsubtitle;
+      @extend .jpborderbace-main;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: $SPmiddle;
+    }
+  }
+}
+
+// --- PC 版排 ---
+@include pc-view {
+  main {
+
+    .smalltitle{
+        font-size: $PCmiddle;
+      }
+    .stepBar {
+      margin-bottom: 104px;
+
+      ul {
+        display: flex;
+        justify-content: center;
+        gap: 246px;
+        position: relative;
+
+        // 連接線
+        &::before {
+          top: 11px;
+          left: 0;
+          right: 0;
+          height: 8px;
+          width: 780px;
+          margin: 0 auto;
+        }
+
+        .stepBar__item {
+          position: relative;
+          text-align: center;
+          width: 156px;
+
+          .dot {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 8px;
+          }
+
+          p {
+            font-size: $SPsubtitle;
+            color: #d9d9d9;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+
+  .NumberOfTicket {
+    .NumberOfTicket__category {
+      li {
+        padding: 24px 0;
+      }
+
+      div:nth-child(2) {
+        display: flex;
+        align-items: baseline;
+        font-size: $SPsmail;
+        margin-left: 16px;
+      }
+    }
+  }
+
+  main.grid {
+    display: grid;
+    grid-template-columns: 1fr 400px; // 左右分割：主內容與側邊面板
+    gap: 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    h1,
+    .stepBar {
+      grid-column: span 2;
+    }
+
+    // 標題與進度條佔滿整行
+
+    .buyPaneru.SPnone {
+      display: block;
+    }
+
+    .buyPaneru {
+      grid-column: 2;
+      height: fit-content;
+      position: sticky;
+      top: 180px; // 隨滾動固定
+    }
+
+    .UseDate,
+    .NumberOfTicket {
+      grid-column: 1; // 放在左側
+    }
+  }
+}
+
+@include pc-view {
+  .ticket-completion-page {
+    max-width: 1060px;
+    padding-bottom: 116px;
+
+    .NumberOfTicket {
+      max-width: 840px;
+      margin: 0 auto;
+
+      h2 {
+        font-size: $PCsubtitle;
+      }
+
+      .NumberOfTicket__timeInfo {
+        padding: 8px 20px;
+        font-size: $PCsmail;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .NumberOfTicket__category {
+        li {
+          div {
+            display: flex;
+            font-size: $PCmiddle;
+
+            h3 {
+              margin-bottom: 0px;
+              font-size: $PCmiddle;
+            }
+          }
+        }
+
+        .total {
+          margin-top: 30px;
+
+          h4 {
+            font-size: $PCmiddle;
+          }
+
+          .total__pay {
+            .total__pay--number {
+              font-size: 3.6rem;
+            }
+
+            .total__pay--en {
+              font-size: $PCsmail;
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    .attention {
+      background-color: #d9eaf2;
+      text-align: center;
+
+      h2 {
+        font-size: $PCsubtitle;
+        margin-bottom: 20px;
+      }
+
+      .spbr {
+        display: none;
+      }
+
+      p {
+        font-size: $PCmiddle;
+        margin-top: 4px;
+      }
+    }
+  }
+}
