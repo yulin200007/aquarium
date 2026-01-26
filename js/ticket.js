@@ -93,42 +93,45 @@ function updateSummary() {
     
 }
 
-// --- 4. 儲存資料 (GitHub 同步關鍵) ---
+// --- 4. 儲存資料 (點擊下一步時執行) ---
+// 這裡確保點擊跳轉按鈕時，將第一頁的所有選擇狀態打包存入 sessionStorage
 const nextButtons = document.querySelectorAll('.nextBtn a');
 nextButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const bookingData = {
-            date: document.getElementById('selected-date').textContent,
-            counts: ticketCounts,
-            total: document.getElementById('total').textContent,
-            summaryHtml: document.getElementById('ticket-summary-list').innerHTML
+            date: document.getElementById('selected-date').textContent, // 日期字串
+            counts: ticketCounts, // 票數物件 {adult: X, kids: Y...}
+            total: document.getElementById('total').textContent, // 總金額字串
+            summaryHtml: document.getElementById('ticket-summary-list').innerHTML // 右側面板摘要
         };
+        // 轉為 JSON 字串儲存，確保跨頁面資料不遺失
         sessionStorage.setItem('aquariumBooking', JSON.stringify(bookingData));
     });
 });
 
-// --- 5. 跨頁面同步載入 ---
-// --- 5. 跨頁面同步載入 (修正變數重置問題) ---
+// --- 5. 跨頁面同步載入與顯示邏輯 ---
 window.addEventListener('load', () => {
+    // A. 第一頁日曆初始化
     if (document.getElementById('calendar-body')) {
         renderCalendar(currentViewDate);
     }
     
+    // B. 讀取儲存的資料
     const savedData = sessionStorage.getItem('aquariumBooking');
     if (!savedData) return;
 
     const data = JSON.parse(savedData);
 
-    // 【核心修正：同步全域變數】
-    // 這樣在第 2 頁按按鈕時，存入的才不會是初始值 0
+    // 【重要：同步變數狀態】將存好的票數同步回 JS 變數，防止跳轉時變回 0
     if (data.counts) {
         ticketCounts = data.counts;
     }
 
-    const isStep2 = document.querySelector('.step2');
+    // 辨識當前頁面類型
+    const isStep2 = document.querySelector('.step2'); 
     const isStep3 = document.querySelector('.ticket-completion-page');
 
-    // 填入基礎 ID 欄位
+    // C. 填入基礎共用資訊 (右側面板)
     const updateText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
     updateText('selected-date', data.date);
     updateText('total', data.total);
@@ -136,7 +139,7 @@ window.addEventListener('load', () => {
     const listBox = document.getElementById('ticket-summary-list');
     if (listBox) listBox.innerHTML = data.summaryHtml;
 
-    // 同步明細列表
+    // D. 同步詳細列表 (第 2, 3 頁專用)
     if (isStep2 || isStep3) {
         const categories = document.querySelectorAll('.NumberOfTicket__category li');
 
@@ -147,33 +150,37 @@ window.addEventListener('load', () => {
             const title = h3.textContent.trim();
             let key = null;
 
+            // 根據 HTML 標題文字匹配對應的票種 key
             if (title.includes("大人")) key = 'adult';
             else if (title.includes("小学")) key = 'kids';
             else if (title.includes("未就学児")) key = 'littleKids';
             else if (title.includes("シニア")) key = 'old';
 
             if (key) {
-                const count = ticketCounts[key]; // 使用已更新的變數
+                const count = ticketCounts[key];
                 const price = TICKET_DATA[key].price;
 
                 if (count > 0) {
+                    // 顯示已購買票種，並填入數量與計算小計
                     li.style.display = "flex";
                     
-                    // 相容第 2 頁 (.ticketcount) 與第 3 頁 (.NumberOfTicket__category--num p)
+                    // 相容第 2 頁 (.ticketcount) 與第 3 頁 (.NumberOfTicket__category--num p) 的張數顯示
                     const countEl = li.querySelector('.ticketcount') || li.querySelector('.NumberOfTicket__category--num p:first-child');
                     if (countEl) countEl.textContent = count;
 
+                    // 填入該票種的小計金額 (張數 * 單價)
                     const payCountEl = li.querySelector('.NumberOfTicket__category--payCount');
                     if (payCountEl) {
                         payCountEl.textContent = `${(count * price).toLocaleString()}円`;
                     }
                 } else {
+                    // 若未購買此票種，則隱藏該行
                     li.style.display = "none";
                 }
             }
         });
 
-        // 同步日期標題與總金額
+        // E. 同步日期條與最後合計金額
         const ticketTime = document.querySelector('.NumberOfTicket__time') || document.querySelector('.NumberOfTicket__timeInfo--time');
         if (ticketTime) ticketTime.textContent = `${data.date} 入場`;
 
