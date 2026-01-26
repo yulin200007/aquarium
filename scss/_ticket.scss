@@ -66,6 +66,32 @@ main {
     }
   }
 
+  .total {
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      margin-top: 16px;
+
+      h4 {
+        font-size: $SPmiddle;
+      }
+
+      .total__pay {
+        display: flex;
+        align-items: end;
+        margin-left: 32px;
+
+        .total__pay--number {
+          font-size: 2.8rem;
+        }
+
+        .total__pay--en {
+          font-size: $SPsmail;
+          margin-left: 4px;
+        }
+      }
+    }
+
   // --- 2. 購票資訊面板 (buyPaneru - 側邊欄卡片) ---
   .buyPaneru {
     background-color: $whitecolor;
@@ -525,31 +551,6 @@ main.grid {
       }
     }
 
-    .total {
-      display: flex;
-      justify-content: end;
-      align-items: end;
-      margin-top: 16px;
-
-      h4 {
-        font-size: $SPmiddle;
-      }
-
-      .total__pay {
-        display: flex;
-        align-items: end;
-        margin-left: 32px;
-
-        .total__pay--number {
-          font-size: 2.8rem;
-        }
-
-        .total__pay--en {
-          font-size: $SPsmail;
-          margin-left: 4px;
-        }
-      }
-    }
   }
 
   // attention
@@ -630,6 +631,32 @@ main.grid {
         align-items: baseline;
         font-size: $SPsmail;
         margin-left: 16px;
+      }
+    }
+
+    .total {
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      margin-top: 16px;
+
+      h4 {
+        font-size: $SPmiddle;
+      }
+
+      .total__pay {
+        display: flex;
+        align-items: end;
+        margin-left: 32px;
+
+        .total__pay--number {
+          font-size: 2.8rem;
+        }
+
+        .total__pay--en {
+          font-size: $SPsmail;
+          margin-left: 4px;
+        }
       }
     }
   }
