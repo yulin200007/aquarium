@@ -5,7 +5,7 @@
 專案網址
 HTML 版本: https://yulin200007.github.io/aquarium/
 
-Vue (Nuxt) 參考版本: jade-kringle-8290b7.netlify.app/
+Vue (Nuxt) 參考版本: https://github.com/yulin200007/wind-aquarium
 
 <hr>
 
